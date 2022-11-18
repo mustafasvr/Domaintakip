@@ -1,0 +1,148 @@
+:root {
+  --red: #DF0101;
+  --muted: #606060;
+  --kahverengi: #8B4513;
+  --basari: #7ad03a;
+  --uyari: #ffba00;
+  --mavi: #1a73e8;
+  --beyaz: #fff;
+  --container-s: 450px;
+  --container-m: 650px;
+  --container-l: 850px;
+  --container: 1200px;
+  --height-xs: 24px;
+  --height-s: 32px;
+  --height-m: 48px;
+  --height: 60px;
+  --padding-s: 7px;
+  --padding: 10px;
+  --padding-m: 20px;
+  --padding-l: 30px;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+form a {
+  text-decoration: none;
+  font-size: 14px;
+}
+
+form input {
+  width: 100%;
+  height: var(--height-m);
+  margin-bottom: 20px;
+  padding-left: var(--padding-s);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+form input::-webkit-input-placeholder {
+  width: 100%;
+  height: 100%;
+  color: var(--muted);
+  border-color: var(--mavi);
+}
+
+form input:-ms-input-placeholder {
+  width: 100%;
+  height: 100%;
+  color: var(--muted);
+  border-color: var(--mavi);
+}
+
+form input::-ms-input-placeholder {
+  width: 100%;
+  height: 100%;
+  color: var(--muted);
+  border-color: var(--mavi);
+}
+
+form input::placeholder {
+  width: 100%;
+  height: 100%;
+  color: var(--muted);
+  border-color: var(--mavi);
+}
+
+form input:focus-visible {
+  border-radius: 4px;
+  outline: none;
+  border-color: var(--mavi) !important;
+}
+
+form .buton-group {
+  width: 100%;
+  height: var(--height-s);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+form .buton-group button {
+  cursor: pointer;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: var(--padding);
+  background-color: var(--mavi);
+  color: var(--beyaz);
+  border-radius: 4px;
+  border: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #202124;
+  font-family: "Noto Sans Myanmar UI",arial,sans-serif;
+}
+
+body .form-box-member {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: var(--padding-m);
+  margin: auto;
+  margin-top: calc(50vh - 200px);
+  width: var(--container-s);
+  height: 100%;
+  border: 1px solid #dadce0;
+  border-top-color: var(--mavi);
+  border-top-width: 2px;
+  border-radius: 8px;
+}
+
+body .form-box-member .form-box {
+  position: relative;
+  width: 100%;
+  padding: var(--padding);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body .form-box-member .form-box .form-logo {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+body .form-box-member .form-box .form-description {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+body .form-box-member .form-box h1 {
+  margin: 0;
+  padding: 0;
+}
+/*# sourceMappingURL=style.css.map */

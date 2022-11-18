@@ -1,45 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
+<section class="form-box-member">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <title>Kullanıcı giriş sayfası</title>
-</head>
-
-<body>
-
-
-    <div class="container">
-
-        <div class="card col-md-3 position-absolute top-50 start-50 translate-middle">
-            <div class="card-header text-center">
-                <h1>Domain Takip</h1>
-            </div>
-            <div class="card-body">
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+<div class="form-box">
+    <div class="form-header">
+        <div class="form-logo">
+        <h1>Domain Takip</h1>
+    </div>
+    <div class="form-description">
+        <h4>Login Page</h4>
+    </div>
+    </div>
+    
+    <form id="login-forum">
+    <div class="form-floating mb-3">
+                    <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Mail adresiniz.</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+                    <input type="text" name="username"  class="form-control" id="floatingUsername" placeholder="Username">
+                    <label for="floatingUsername">Kullanıcı adınız.</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="passwordone" class="form-control" id="floatingPasswordone" placeholder="Şifreniz">
+                    <label for="floatingPasswordone">Şifreniz</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="passwordtwo" class="form-control" id="floatingPasswordtwo" placeholder="Şifre tekrarı">
+                    <label for="floatingPasswordtwo">Şifre tekrarı</label>
                 </div>
             </div>
-            <div class="card-footer">
+            <div class="buton-group">
             <button class="btn btn-primary">Yeni hesap oluştur</button>
-                <button class="float-end btn btn-success">Giriş Yap</button>
+                <div class="gonder float-end btn btn-success">Giriş Yap</div>
             </div>
-        </div>
+    </form>
+</div>
 
 
+</section>
 
 
-    </div>
+<script>
+$(document).ready(function() {
+    $('#login-forum').keypress(function(e) {
+        if (e.which == 13) return false;
+    });
 
+    $("body").on("click",".gonder",(function () {
+        $.ajax({
+            type: "POST",
+            url: "/App/Controller/ajax.php?user=login",
+            data: $("#login-forum").serialize(),
+            success: function(cevap) {
+                console.log(cevap);
+            }
+        });
+    }));
 
-</body>
+});
 
-</html>
+</script>

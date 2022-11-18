@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    color: #202124;
+    font-family: "Noto Sans Myanmar UI",arial,sans-serif;
+
+
+.form-box-member {
+    box-sizing: border-box;
+    padding: var(--padding-m);
+    margin: auto;
+    margin-top: calc(50vh - 200px);
+    width: var(--container-s);
+    height: 100%;
+    border: 1px solid #dadce0;
+    border-top-color: var(--mavi);
+    border-top-width: 2px;
+    border-radius: 8px;
+
+
+    .form-box {
+        position: relative;
+        width: 100%;
+        padding: var(--padding);
+        box-sizing: border-box;
+        .form-logo {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .form-description {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+
+    h1 {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+}
+
+
+
+
+
+}
