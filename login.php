@@ -1,61 +1,145 @@
-<section class="form-box-member">
+<?php 
+require_once __DIR__.'/setconfig.php';
+if(isset($_SESSION['userlogin']['email'])) {
+    header("Location:/");
+    exit();
+ }
+?>
 
-<div class="form-box">
-    <div class="form-header">
-        <div class="form-logo">
-        <h1>Domain Takip</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="<?php echo $ayar['description'] ?>">
+    <meta name="Author" content="<?php echo $ayar['author'] ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
+    <script src="assets/js/jquery.js"></script>
+    <title><?php echo $ayar['site_title'] ?></title>
+    <style>
+      body {
+        background-color: #FAFAFA;
+      }
+    </style>
+</head>
+
+<body>
+
+    <main class="container">
+
+    <div id="login-box"> 
+        <h1><a href="/"><?php echo $ayar['site_name'] ?></a></h1>
+        <div id="alert"></div>
+        <div class="login"></div>
     </div>
-    <div class="form-description">
-        <h4>Login Page</h4>
-    </div>
-    </div>
-    
-    <form id="login-forum">
-    <div class="form-floating mb-3">
-                    <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Mail adresiniz.</label>
-                </div>
-                <div class="form-floating">
-                    <input type="text" name="username"  class="form-control" id="floatingUsername" placeholder="Username">
-                    <label for="floatingUsername">Kullanıcı adınız.</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" name="passwordone" class="form-control" id="floatingPasswordone" placeholder="Şifreniz">
-                    <label for="floatingPasswordone">Şifreniz</label>
-                </div>
-                <div class="form-floating">
-                    <input type="password" name="passwordtwo" class="form-control" id="floatingPasswordtwo" placeholder="Şifre tekrarı">
-                    <label for="floatingPasswordtwo">Şifre tekrarı</label>
-                </div>
-            </div>
-            <div class="buton-group">
-            <button class="btn btn-primary">Yeni hesap oluştur</button>
-                <div class="gonder float-end btn btn-success">Giriş Yap</div>
-            </div>
-    </form>
-</div>
+
+    </main>
 
 
-</section>
+
+    <script>
+    $(document).ready(function() {
+      Login();
 
 
-<script>
-$(document).ready(function() {
-    $('#login-forum').keypress(function(e) {
-        if (e.which == 13) return false;
-    });
+        $("body").on("click", ".gonder", (function(e) {
+        e.preventDefault();
 
-    $("body").on("click",".gonder",(function () {
         $.ajax({
             type: "POST",
             url: "/App/Controller/ajax.php?user=login",
-            data: $("#login-forum").serialize(),
+            data: $("#login-form").serialize(),
+            datatype: "json",
             success: function(cevap) {
                 console.log(cevap);
+                var response = jQuery.parseJSON(cevap);
+                if(response.status) {
+                    $("#alert").removeClass("alert-box alert-box-danger");
+                    $("#alert").addClass("alert-box alert-box-success");
+                    $("#alert").html(response.message);
+                    setTimeout(function () {
+                        document.location.href = '/';
+                    },1000);
+                } else {
+                    $("#alert").removeClass("alert-box alert-box-success");
+                    $("#alert").addClass("alert-box alert-box-danger");
+                    $("#alert").html(response.message);
+                }
+                    
             }
         });
+
     }));
 
-});
+        function Login() {
+            $.ajax({
+            url: "/App/Controller/ajax.php?user=login-thema",
+            type: "POST",
+            success: function(result) {
+                $(".login").html(result);
+            }
+        });
+    }
 
-</script>
+    function Register() {
+            $.ajax({
+            url: "/App/Controller/ajax.php?user=register-thema",
+            type: "POST",
+            success: function(result) {
+                $(".login").html(result);
+            }
+        });
+    }
+
+
+    $("body").on("click", ".kayitol", (function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "/App/Controller/ajax.php?user=register",
+            data: $("#register-form").serialize(),
+            datatype: "json",
+            success: function(cevap) {
+                var response = jQuery.parseJSON(cevap);
+                if(response.status) {
+                    $("#alert").removeClass("alert-box alert-box-danger");
+                    $("#alert").addClass("alert-box alert-box-success");
+                    $("#alert").html(response.message);
+                    setTimeout(function () {
+                        document.location.href = '/';
+                    },1000);
+                } else {
+                    $("#alert").removeClass("alert-box alert-box-success");
+                    $("#alert").addClass("alert-box alert-box-danger");
+                    $("#alert").html(response.message);
+                }
+                    
+            }
+        });
+
+    }));
+
+
+    $("body").on("click", ".kayit", (function() {
+    $("#login-page").hide();
+    Register();
+}));
+
+
+
+    });
+    </script>
+
+
+
+
+</body>
+
+</html>
